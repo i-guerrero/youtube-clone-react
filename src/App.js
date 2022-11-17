@@ -1,7 +1,18 @@
 import logo from './logo.svg';
 import './App.css';
 
+
 function App() {
+
+
+  fetch(`https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}`)
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data)
+    //   addToHistory();
+  })
+  .catch(console.log);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -21,5 +32,7 @@ function App() {
     </div>
   );
 }
+
+
 
 export default App;
