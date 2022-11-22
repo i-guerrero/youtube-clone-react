@@ -5,16 +5,16 @@ import About from "./pages/About";
 import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
 
-fetch(
-  `https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}`
-)
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.log("Error: ", error);
-  });
+// fetch(
+//   `https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}`
+// )
+//   .then((res) => res.json())
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((error) => {
+//     console.log("Error: ", error);
+//   });
 
 function App() {
   return (
