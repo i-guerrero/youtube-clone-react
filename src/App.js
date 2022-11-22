@@ -1,38 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import NavBar from "./NavBar";
+import About from "./pages/About";
+import Home from "./pages/Home";
+import { Route, Routes } from "react-router-dom";
 
-
-function App() {
-
-
-  fetch(`https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}`)
+fetch(
+  `https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}`
+)
   .then((res) => res.json())
   .then((data) => {
-    console.log(data)
-    //   addToHistory();
+    console.log(data);
   })
-  .catch(console.log);
+  .catch((error) => {
+    console.log("Error: ", error);
+  });
 
+function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </div>
     </div>
   );
 }
-
-
 
 export default App;
