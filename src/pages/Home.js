@@ -2,9 +2,12 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import YouTube from "react-youtube";
+import VideoList from "../Components/VideoList";
 
 export default function Home() {
   const [search, setSearch] = useState("");
+  const [videos, setVideos] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -17,37 +20,49 @@ export default function Home() {
     console.log(search);
     // searchByKeyword();
     fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}&q=${search}&maxResults=5`
+      `https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}&part=snippet&q=${search}&maxResults=5`
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data.items);
+        console.log(data.items[0]);
+        setSearchResults(data.items);
+        console.log("Search Results: " + searchResults);
+        // data.items.forEach((result) => {
+        //   fetch(
+        //     `https://www.googleapis.com/youtube/v3/videos/${result.id.videoId}`
+        //   )
+        //     .then((res) => res.json())
+        //     .then((video) => {
+        //       console.log(video);
+        //       console.log(video.snippet.title);
+        //       console.log(video.snippet.thumbnails);
+        //     });
+        // });
+        // mapSearchResults();
       })
       .catch((error) => {
         console.log("Error: ", error);
       });
+    setSearch("");
   }
 
-  // fetch(
-  //   `https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}&q=<search>`
-  // )
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     console.log(data);
-  //   })
-  //   .catch((error) => {
-  //     console.log("Error: ", error);
-  //   });
+  function getVideofromID(id) {
+    fetch(`https://www.googleapis.com/youtube/v3/videos/${id}`)
+      .then((res) => res.json())
+      .then((video) => {
+        console.log(video);
+        console.log(video.snippet.title);
+        console.log(video.snippet.thumbnails);
+        return video;
+      });
+  }
 
-  // function searchByKeyword() {
-  //   const results = YouTube.Search.list("id,snippet", {
-  //     q: search,
-  //     maxResults: 5,
-  //   });
-  //   console.log(results);
-  // }
-
-  // searchByKeyword();
+  function mapSearchResults() {
+    searchResults.map((result) => {
+      getVideofromID(result.id.videoId);
+    });
+  }
 
   return (
     <div>
@@ -63,9 +78,11 @@ export default function Home() {
         <label></label>
         <input id="submit" type="submit"></input>
       </form>
-      {!search ? (
+      {videos.length === 0 ? (
         <p>No search results yet. Please submit a search above.</p>
-      ) : null}
+      ) : (
+        <VideoList videos={videos} />
+      )}
     </div>
   );
 }
