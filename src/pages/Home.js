@@ -2,9 +2,22 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import YouTube from "react-youtube";
+import Modal from '../Modal';
 
 export default function Home() {
   const [search, setSearch] = useState("");
+  const [isOpen, setIsOpen] = useState(false)
+  const BUTTON_WRAPPER_STYLES = {
+    position: 'relative',
+    zIndex: 1
+  }
+  
+  const OTHER_CONTENT_STYLES = {
+    position: 'relative',
+    zIndex: 2,
+    backgroundColor: 'red',
+    padding: '10px'
+  }
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -24,7 +37,18 @@ export default function Home() {
         console.log(data);
       })
       .catch((error) => {
-        console.log("Error: ", error);
+        // console.log("Error: ", error);
+        <>
+        <div style={BUTTON_WRAPPER_STYLES} onClick={() => console.log('clicked')}>
+          <button onClick={() => setIsOpen(true)}>Open Modal</button>
+  
+          <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+            Fancy Modal
+          </Modal>
+        </div>
+  
+        <div style={OTHER_CONTENT_STYLES}>Other Content</div>
+      </>
       });
   }
 
