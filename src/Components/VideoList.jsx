@@ -1,21 +1,17 @@
 import React from 'react'
+import VideoCard from './VideoCard'
+import { Link } from "react-router-dom"
 
 export default function VideoList({ videos }) {
-    function getVideofromID (id) {
-        fetch(`https://www.googleapis.com/youtube/v3/videos/${id}`)
-        .then((res) => res.json())
-        .then((video) => {
-            console.log(video);
-            console.log(video.snippet.title)
-            console.log(video.snippet.thumbnails)
-        })
-    }
+    
   return (
     <div>
-      {videos.map(video => {
+      {videos.map((video, i) => {
         
         return (
-            <p>{video.id.videoId}</p>
+            <div key={`${video.id}-${i}`} className='videoCard'>
+                <Link to="/videos" ><VideoCard video={video} /></Link>
+            </div>
         )
       })}
     </div>

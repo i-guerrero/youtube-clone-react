@@ -10,7 +10,6 @@ export default function Home() {
   const [searchResults, setSearchResults] = useState([]);
 
   const handleChange = (e) => {
-    e.preventDefault();
     setSearch(e.target.value);
   };
 
@@ -28,18 +27,15 @@ export default function Home() {
         console.log(data.items[0]);
         setSearchResults(data.items);
         console.log("Search Results: " + searchResults);
-        // data.items.forEach((result) => {
-        //   fetch(
-        //     `https://www.googleapis.com/youtube/v3/videos/${result.id.videoId}`
-        //   )
-        //     .then((res) => res.json())
-        //     .then((video) => {
-        //       console.log(video);
-        //       console.log(video.snippet.title);
-        //       console.log(video.snippet.thumbnails);
-        //     });
-        // });
-        // mapSearchResults();
+        setVideos(
+          data.items.map((video, i) => {
+            return {
+              videoId: video.id.videoId,
+              title: video.snippet.title,
+              thumbnail: video.snippet.thumbnails.default,
+            };
+          })
+        );
       })
       .catch((error) => {
         console.log("Error: ", error);
@@ -70,7 +66,7 @@ export default function Home() {
         <input
           id="search"
           name="search"
-          // value={search}
+          value={search}
           onChange={handleChange}
           placeholder="cat videos"
         ></input>
