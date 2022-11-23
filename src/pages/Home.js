@@ -2,9 +2,9 @@ import React from "react";
 import { useState } from "react";
 import VideoList from "../Components/VideoList";
 
-export default function Home() {
+export default function Home({ videos, setVideos }) {
   const [search, setSearch] = useState("");
-  const [videos, setVideos] = useState([]);
+
   const [searchResults, setSearchResults] = useState([]);
 
   const handleChange = (e) => {
@@ -22,6 +22,8 @@ export default function Home() {
       .then((data) => {
         console.log(data.items);
         console.log(data.items[0]);
+        // console.log(data.items[0].player);
+        // console.log(data.items[0].player.embedHtml);
         setSearchResults(data.items);
         console.log("Search Results: " + searchResults);
         setVideos(
