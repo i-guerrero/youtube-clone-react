@@ -1,19 +1,10 @@
+// import logo from "./logo.svg";
 import "./App.css";
 import NavBar from "./NavBar";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-// fetch(
-//   `https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}`
-// )
-//   .then((res) => res.json())
-//   .then((data) => {
-//     console.log(data);
-//   })
-//   .catch((error) => {
-//     console.log("Error: ", error);
-//   });
+import Videos from "./pages/videos";
 
 function App() {
   return (
@@ -24,6 +15,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/videos" element={<Videos />} />
+            {/* <VideoCard key={video.id} video={video} /> */}
           </Routes>
         </div>
       </Router>

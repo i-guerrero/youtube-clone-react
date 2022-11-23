@@ -1,13 +1,13 @@
 import React from "react";
-import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
-import YouTube from "react-youtube";
+import VideoList from "../Components/VideoList";
 
 export default function Home() {
   const [search, setSearch] = useState("");
+  const [videos, setVideos] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   const handleChange = (e) => {
-    e.preventDefault();
     setSearch(e.target.value);
   };
 
@@ -15,39 +15,30 @@ export default function Home() {
     e.preventDefault();
     console.log(e.target.search.value);
     console.log(search);
-    // searchByKeyword();
     fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}&q=${search}&maxResults=5`
+      `https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}&part=snippet&q=${search}&maxResults=5`
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data.items);
+        console.log(data.items[0]);
+        setSearchResults(data.items);
+        console.log("Search Results: " + searchResults);
+        setVideos(
+          data.items.map((video, i) => {
+            return {
+              videoId: video.id.videoId,
+              title: video.snippet.title,
+              thumbnail: video.snippet.thumbnails.default,
+            };
+          })
+        );
       })
       .catch((error) => {
         console.log("Error: ", error);
       });
+    setSearch("");
   }
-
-  // fetch(
-  //   `https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}&q=<search>`
-  // )
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     console.log(data);
-  //   })
-  //   .catch((error) => {
-  //     console.log("Error: ", error);
-  //   });
-
-  // function searchByKeyword() {
-  //   const results = YouTube.Search.list("id,snippet", {
-  //     q: search,
-  //     maxResults: 5,
-  //   });
-  //   console.log(results);
-  // }
-
-  // searchByKeyword();
 
   return (
     <div>
@@ -55,17 +46,18 @@ export default function Home() {
         <input
           id="search"
           name="search"
-          // value={search}
+          value={search}
           onChange={handleChange}
           placeholder="cat videos"
         ></input>
-        {/* <button onClick={() => handleSearch()}>Search</button> */}
         <label></label>
         <input id="submit" type="submit"></input>
       </form>
-      {!search ? (
+      {videos.length === 0 ? (
         <p>No search results yet. Please submit a search above.</p>
-      ) : null}
+      ) : (
+        <VideoList videos={videos} />
+      )}
     </div>
   );
 }
