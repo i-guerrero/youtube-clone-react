@@ -5,15 +5,20 @@ import { Link } from "react-router-dom"
 export default function VideoList({ videos }) {
     
   return (
-    <div>
+    <article>
+        <ul>
       {videos.map((video, i) => {
         
         return (
-            <div key={`${video.id}-${i}`} className='videoCard'>
-                <Link to="/videos" ><VideoCard video={video} /></Link>
-            </div>
+            <li key={`${video.videoId}-${i}`} className='videoCard'>
+                <Link to={`/videos/${video.videoId}`} >
+                    <img src={video.thumbnail.url} />
+                    <p>{video.title}</p>
+                </Link>
+            </li>
         )
       })}
-    </div>
+      </ul>
+    </article>
   )
 }

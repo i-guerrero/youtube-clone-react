@@ -70,7 +70,6 @@ export default function Home() {
           onChange={handleChange}
           placeholder="cat videos"
         ></input>
-        {/* <button onClick={() => handleSearch()}>Search</button> */}
         <label></label>
         <input id="submit" type="submit"></input>
       </form>
