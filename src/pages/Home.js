@@ -1,7 +1,5 @@
 import React from "react";
-import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
-import YouTube from "react-youtube";
 import VideoList from "../Components/VideoList";
 
 export default function Home() {
@@ -17,7 +15,6 @@ export default function Home() {
     e.preventDefault();
     console.log(e.target.search.value);
     console.log(search);
-    // searchByKeyword();
     fetch(
       `https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}&part=snippet&q=${search}&maxResults=5`
     )
@@ -41,23 +38,6 @@ export default function Home() {
         console.log("Error: ", error);
       });
     setSearch("");
-  }
-
-  function getVideofromID(id) {
-    fetch(`https://www.googleapis.com/youtube/v3/videos/${id}`)
-      .then((res) => res.json())
-      .then((video) => {
-        console.log(video);
-        console.log(video.snippet.title);
-        console.log(video.snippet.thumbnails);
-        return video;
-      });
-  }
-
-  function mapSearchResults() {
-    searchResults.map((result) => {
-      getVideofromID(result.id.videoId);
-    });
   }
 
   return (

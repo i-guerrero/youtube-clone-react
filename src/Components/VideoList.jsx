@@ -1,5 +1,5 @@
 import React from 'react'
-import VideoCard from './VideoCard'
+// import VideoCard from './VideoCard'
 import { Link } from "react-router-dom"
 
 export default function VideoList({ videos }) {
@@ -12,7 +12,7 @@ export default function VideoList({ videos }) {
         return (
             <li key={`${video.videoId}-${i}`} className='videoCard'>
                 <Link to={`/videos/${video.videoId}`} >
-                    <img src={video.thumbnail.url} />
+                    <img src={video.thumbnail.url} alt={video.title} />
                     <p>{video.title}</p>
                 </Link>
             </li>
