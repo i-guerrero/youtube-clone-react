@@ -2,7 +2,7 @@ import "./App.css";
 import NavBar from "./NavBar";
 import About from "./pages/About";
 import Home from "./pages/Home";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 // fetch(
 //   `https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}`
@@ -18,13 +18,15 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <NavBar />
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </div>
+      <Router>
+        <NavBar />
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </div>
+      </Router>
     </div>
   );
 }
