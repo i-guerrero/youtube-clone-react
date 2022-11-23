@@ -2,13 +2,15 @@ import { useState, useEffect } from "react";
 
 export default function List() {
   const [video, setVideo] = useState("people");
-  const [data, setData] = useState([]);
+  const [data,  setData] = useState([]);
+ 
 
 
 
   useEffect(() => {
-
-
+    // https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}
+    // https://www.googleapis.com/youtube/v3/videos/${result.id.videoId}
+    // https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}&part=snippet&q=${video}&maxResults=5`
     const url = `https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}`; 
     const result = JSON.parse(window.localStorage.getItem(video));
     
