@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import VideoList from "../Components/VideoList";
+import Modal from "../Modal";
 
 export default function Home({ videos, setVideos }) {
   const [search, setSearch] = useState("");
@@ -11,12 +12,26 @@ export default function Home({ videos, setVideos }) {
     setSearch(e.target.value);
   };
 
+  const BUTTON_WRAPPER_STYLES = {
+    position: "relative",
+    zIndex: 1,
+  };
+
+  const OTHER_CONTENT_STYLES = {
+    position: "relative",
+    zIndex: 2,
+    backgroundColor: "red",
+    padding: "10px",
+  };
+
+  const [isOpen, setIsOpen] = useState(false);
+
   function handleSubmit(e) {
     e.preventDefault();
     console.log(e.target.search.value);
     console.log(search);
     fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}&part=snippet&q=${search}&maxResults=5`
+      `https://youtube.googlepis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}&part=snippet&q=${search}&maxReults=5`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -38,6 +53,21 @@ export default function Home({ videos, setVideos }) {
       })
       .catch((error) => {
         console.log("Error: ", error);
+        setIsOpen(true);
+        <>
+          <div
+            style={BUTTON_WRAPPER_STYLES}
+            onClick={() => console.log("clicked")}
+          >
+            <button onClick={() => setIsOpen(true)}>Open Modal</button>
+
+            <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+              Fancy Modal
+            </Modal>
+          </div>
+
+          <div style={OTHER_CONTENT_STYLES}>Other Content</div>
+        </>;
       });
     setSearch("");
   }
@@ -60,7 +90,22 @@ export default function Home({ videos, setVideos }) {
       ) : (
         <VideoList videos={videos} />
       )}
+      {isOpen ? (
+        <div>
+          <div
+            style={BUTTON_WRAPPER_STYLES}
+            onClick={() => console.log("clicked")}
+          >
+            <button onClick={() => setIsOpen(true)}>Open Modal</button>
+
+            <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+              Fancy Modal
+            </Modal>
+          </div>
+
+          <div style={OTHER_CONTENT_STYLES}>Other Content</div>
+        </div>
+      ) : null}
     </div>
   );
 }
-
