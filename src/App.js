@@ -1,38 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-
+// import logo from "./logo.svg";
+import "./App.css";
+import NavBar from "./NavBar";
+import About from "./pages/About";
+import Home from "./pages/Home";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// import Videos from "./pages/videos";
+// import videos from "./pages/Home";
+import VideoCard from "./Components/VideoCard";
+import { useState } from "react";
 
 function App() {
-
-
-  fetch(`https://youtube.googleapis.com/youtube/v3/search?key=${process.env.REACT_APP_API_KEY}`)
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data)
-    //   addToHistory();
-  })
-  .catch(console.log);
+  const [videos, setVideos] = useState([]);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <NavBar />
+        <div className="container">
+          <Routes>
+            <Route
+              path="/"
+              element={<Home videos={videos} setVideos={setVideos} />}
+            />
+            <Route path="/about" element={<About />} />
+            {/* <Route path="/videos" element={<Videos />} /> */}
+            {/* <VideoCard key={video.id} video={video} /> */}
+            <Route path="/videos/:id" element={<VideoCard videos={videos} />} />
+          </Routes>
+        </div>
+      </Router>
     </div>
   );
 }
-
-
 
 export default App;
