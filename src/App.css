@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+.teamwork{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+ align-items: center;
+ justify-items: center;
+}
+
+.biopic{
+  margin-bottom: 10px;
+  margin-top: 20px;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  box-sizing: border-box;
+}
+
+.JamesCard {
+  
+}
