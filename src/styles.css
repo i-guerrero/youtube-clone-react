@@ -7,7 +7,7 @@ body {
 }
 
 .nav {
-    background-color: #333;
+    background-color: rgb(220, 32, 32);
     color: white;
     display: flex;
     justify-content: space-between;
@@ -38,10 +38,15 @@ body {
 }
 
 .nav li.active {
-    background-color: #555;
+    background-color: rgb(140, 51, 51);
 }
 
 .nav li:hover {
-    background-color: #777;
+    background-color: rgb(8, 4, 4);
 }
-
+.nav img {
+    float: left;
+    width: 275px;
+    height: 90px;
+    background: rgb(220, 32, 32);
+  }
