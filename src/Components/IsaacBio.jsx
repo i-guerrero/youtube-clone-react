@@ -1,5 +1,4 @@
 
-
 export default function IsaacBio(){
     return (
       <><div className="IsaacBio">
@@ -12,7 +11,7 @@ export default function IsaacBio(){
       </div>
       <div className="github-links">
       <a href="https://github.com/i-guerrero">
-      <img src={require("./public/Assets/gitlogo.png")} alt="Github Link" />
+      <img src="./public/Assets/gitlogo.png" alt="Github Link" />
      </a>
         </div></>
     );

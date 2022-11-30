@@ -13,7 +13,7 @@
       </div>
       <div className="github-links">
       <a href="https://github.com/vvjs22">
-      <img src={require("./public/Assets/gitlogo.png")} alt="Github Link" />
+      <img src="./public/Assets/gitlogo.png" alt="Github Link" />
      </a>
         </div></>
     );
