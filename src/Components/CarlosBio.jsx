@@ -9,8 +9,10 @@
         <p> Carlos Suero is a Full-Stack developer in progress. He has always had a love of technology, and its insides.
         </p>
       </div>
-      <div className="logos">
-     
+      <div className="github-links">
+     <a href="https://github.com/CJS2408">
+      <img src="public/Assets/gitlogo.png" />
+     </a>
         </div></>
     );
   };
