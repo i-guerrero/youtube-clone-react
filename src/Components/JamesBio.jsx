@@ -11,8 +11,10 @@
         <p>FSW as Creative <br></br> New Media Production Specialist
         </p>
       </div>
-      <div className="logos">
- 
+      <div className="github-links">
+      <a href="https://github.com/vvjs22">
+      <img src="public/Assets/gitlogo.png" />
+     </a>
         </div></>
     );
   };

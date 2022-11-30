@@ -10,8 +10,10 @@ export default function IsaacBio(){
         <p>Full Stack Software Engineer - Pursuit | Interests - DevOps, cloud computing, machine learning | Technologies - JavaScript, React, Express, PostgreSQL
         </p>
       </div>
-      <div className="logos">
-  
+      <div className="github-links">
+      <a href="https://github.com/i-guerrero">
+      <img src="public/Assets/gitlogo.png" />
+     </a>
         </div></>
     );
   };
