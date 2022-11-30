@@ -5,7 +5,7 @@ export default function NavBar() {
   return (
     <div>
       <nav className='nav'>
-      <img src={ require('./ytLogo.png') }/>
+      <img src={ require('./ytLogo.png') } alt="YouTube logo" />
       {/* <img src="ytMyLogo.png" alt="ytMyLogo" /> */}
        {/* <Link to="/" className='site-title'>Youtube</Link> */}
         <ul>
