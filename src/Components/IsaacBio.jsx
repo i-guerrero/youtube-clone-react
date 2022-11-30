@@ -12,7 +12,7 @@ export default function IsaacBio(){
       </div>
       <div className="github-links">
       <a href="https://github.com/i-guerrero">
-      <img src="public/Assets/gitlogo.png" />
+      <img src="/public/Assets/gitlogo.png" alt="Github Link" />
      </a>
         </div></>
     );
