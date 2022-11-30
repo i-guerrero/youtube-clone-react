@@ -3,6 +3,8 @@ Trello Board: [https://trello.com/b/ZFytmzn2/youtube-clone-isaac-james-carlos](h
 
 Group Members: Carlos, Isaac, James
 
+Live site: [https://main--youtube-clone-react-carlos-isaac-jame.netlify.app/](https://main--youtube-clone-react-carlos-isaac-jame.netlify.app/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
