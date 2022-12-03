@@ -1,4 +1,4 @@
-
+import GitLogo from "../Images/gitlogo.png"
   export default function JamesBio(){
     return (
 
@@ -13,7 +13,7 @@
       </div>
       <div className="github-links">
       <a href="https://github.com/vvjs22">
-      <img src={require("./public/Assets/gitlogo.png")} alt="Github Link" />
+      <img src={GitLogo} alt="Github Link" className="gitLogo" />
      </a>
         </div></>
     );

@@ -16,3 +16,11 @@ code {
   height: 400px;
   width: 400px;
 }
+
+.gitLogo {
+  height: 2.5rem
+}
+
+.bold {
+  font-weight: bold;
+}
