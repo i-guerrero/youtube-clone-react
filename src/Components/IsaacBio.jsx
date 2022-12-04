@@ -1,4 +1,4 @@
-
+import GitLogo from "../Images/gitlogo.png"
 
 export default function IsaacBio(){
     return (
@@ -12,7 +12,7 @@ export default function IsaacBio(){
       </div>
       <div className="github-links">
       <a href="https://github.com/i-guerrero">
-      <img src="/public/Assets/gitlogo.png" alt="Github Link" />
+      <img src={GitLogo} alt="Github Link" className="gitLogo" />
      </a>
         </div></>
     );
