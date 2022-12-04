@@ -23,6 +23,7 @@ export default function Home({ videos, setVideos }) {
       .then((res) => res.json())
       .then((data) => {
         setSearchResults(data.items);
+        console.log(searchResults);
         setVideos(
           data.items.map((video, i) => {
             return {
